@@ -34,5 +34,17 @@ public class DataLoader {
         } else {
             System.out.println("Seat is already reserved!");
         }
+
+        if (theatre.reserveSeatNoBinary("D12")) {
+            System.out.println("Please pay");
+        } else {
+            System.out.println("Seat is already reserved!");
+        }
+
+        if (theatre.reserveSeatNoBinary("B13")) {
+            System.out.println("Please pay");
+        } else {
+            System.out.println("Seat is already reserved!");
+        }
     }
 }
