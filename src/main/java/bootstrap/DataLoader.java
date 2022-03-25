@@ -4,7 +4,7 @@ import model.Theatre;
 
 public class DataLoader {
 
-    Theatre theatre = new Theatre("Olimpyan", 8, 12);
+    Theatre theatre = new Theatre("Olympian", 8, 12);
 
     public void load() {
         theatre.getSeats();
