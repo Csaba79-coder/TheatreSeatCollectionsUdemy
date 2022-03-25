@@ -7,7 +7,7 @@ public class DataLoader {
     Theatre theatre = new Theatre("Olympian", 8, 12);
 
     public void load() {
-        theatre.getSeats();
+        // theatre.getSeats();
 
         if (theatre.reserveSeat("H11")) {
             System.out.println("Please pay");

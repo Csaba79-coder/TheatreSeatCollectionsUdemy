@@ -11,8 +11,9 @@ public class Theatre {
     // if we change it to Collection ... more generic!
     // private Collection<Seat> seats = new ArrayList<>();
     // private Collection<Seat> seats = new HashSet<>(); // <- using different order in case of set! BUT works!
-    private Collection<Seat> seats = new LinkedHashSet<>(); // <- returns in order this time!
+    //private Collection<Seat> seats = new LinkedHashSet<>(); // <- returns in order this time!
     // private Collection<Seat> seats = new TreeSet<>(); // <- gives error: ClassCastException
+    private List<Seat> seats = new ArrayList<>();
 
     public Theatre(String THEATRE_NAME, int numRows, int seatsPerRow) {
         this.THEATRE_NAME = THEATRE_NAME;
@@ -29,19 +30,29 @@ public class Theatre {
     }
 
     public boolean reserveSeat(String seatNumber) {
-        Seat requestedSeat = null;
-        for (Seat seat : seats) {
-            if (seat.getSEAT_NUMBER().equals(seatNumber)) {
-                requestedSeat = seat;
-                break;
-            }
-        }
+        Seat requestedSeat = new Seat(seatNumber);
+        int foundSeat = Collections.binarySearch(seats, requestedSeat, null);
 
-        if (requestedSeat == null) {
+        if (foundSeat >= 0) {
+            return seats.get(foundSeat).reserve();
+        } else {
             System.out.println("There is no seat " + seatNumber);
             return false;
         }
-        return requestedSeat.reserve();
+
+//        for (Seat seat : seats) {
+//            System.out.print(".");
+//            if (seat.getSEAT_NUMBER().equals(seatNumber)) {
+//                requestedSeat = seat;
+//                break;
+//            }
+//        }
+//
+//        if (requestedSeat == null) {
+//            System.out.println("There is no seat " + seatNumber);
+//            return false;
+//        }
+//        return requestedSeat.reserve();
     }
 
     // for testing
@@ -59,7 +70,7 @@ public class Theatre {
         this.seats = seats;
     }
 
-    private class Seat {
+    private class Seat implements Comparable<Seat> {
         private final String SEAT_NUMBER;
         private boolean reserved = false;
 
@@ -85,6 +96,11 @@ public class Theatre {
             } else {
                 return false;
             }
+        }
+
+        @Override
+        public int compareTo(Seat seat) {
+            return this.SEAT_NUMBER.compareTo(seat.getSEAT_NUMBER());
         }
 
         public String getSEAT_NUMBER() {
