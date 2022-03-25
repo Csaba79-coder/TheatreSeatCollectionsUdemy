@@ -1,2 +1,2 @@
 # TheatreSeatCollectionsUdemy
-Collections
+Collections & Binary Search
