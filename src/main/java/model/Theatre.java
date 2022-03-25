@@ -1,12 +1,18 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Theatre {
 
     private final String THEATRE_NAME;
-    private List<Seat> seats = new ArrayList<>();
+    // private List<Seat> seats = new ArrayList<>();
+    // we can change ArrayList to LinkedList ... as it is declared using List interface!
+    // private List<Seat> seats = new LinkedList<>();
+    // if we change it to Collection ... more generic!
+    // private Collection<Seat> seats = new ArrayList<>();
+    // private Collection<Seat> seats = new HashSet<>(); // <- using different order in case of set! BUT works!
+    private Collection<Seat> seats = new LinkedHashSet<>(); // <- returns in order this time!
+    // private Collection<Seat> seats = new TreeSet<>(); // <- gives error: ClassCastException
 
     public Theatre(String THEATRE_NAME, int numRows, int seatsPerRow) {
         this.THEATRE_NAME = THEATRE_NAME;
