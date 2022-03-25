@@ -55,6 +55,29 @@ public class Theatre {
 //        return requestedSeat.reserve();
     }
 
+    public boolean reserveSeatNoBinary(String seatNumber) {
+        int low = 0;
+        int high = seats.size() - 1;
+
+        while (low <= high) {
+            System.out.print(".");
+            int mid = (low + high) / 2;
+            Seat midVal = seats.get(mid);
+            int cmp = midVal.getSEAT_NUMBER().compareTo(seatNumber);
+
+            if (cmp < 0 ) {
+                low = mid + 1;
+            } else if (cmp > 0) {
+                high = mid - 1;
+            } else {
+                return seats.get(mid).reserve();
+            }
+        }
+        System.out.println("There is no seat " + seatNumber);
+        return false;
+    }
+
+
     // for testing
     public void getSeats() {
         for (Seat seat : seats) {
