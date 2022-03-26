@@ -94,5 +94,9 @@ public class DataLoader {
         Sort.sortList(seatCopy);
         System.out.println("Print sorted seatCopy");
         Printer.printList(seatCopy);
+
+        Collections.swap(seatCopy, 1, 2);
+        System.out.println("Print swapped elements (index: 1 /element=2/ & index: 2 /element=3/)  seatCopy");
+        Printer.printList(seatCopy);
     }
 }
