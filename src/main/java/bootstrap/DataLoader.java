@@ -133,7 +133,8 @@ public class DataLoader {
         List<Theatre.Seat> priceSeatsList = new ArrayList<>();
         priceSeatsList.add(theatre.new Seat("B00", 13.00));
         priceSeatsList.add(theatre.new Seat("A00", 13.00));
-        priceSeatsList.sort(Theatre.PRICE_ORDER);
+        // priceSeatsList.sort(Theatre.PRICE_ORDER);
+        Collections.sort(priceSeatsList, Theatre.PRICE_ORDER);
         Theatre.Seat.printList(priceSeatsList);
 
         List<Theatre.Seat> anotherFullPriceList = new ArrayList<>(theatre.getSeats());
