@@ -123,5 +123,9 @@ public class DataLoader {
         } else {
             System.out.println("Seat already reserved!");
         }
+
+        List<Theatre.Seat> reversedSeats = new ArrayList<>(theatre.getSeats());
+        Collections.reverse(reversedSeats);
+        Theatre.Seat.printList(reversedSeats);
     }
 }
