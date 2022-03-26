@@ -56,6 +56,9 @@ public class Theatre {
     }
 
     public boolean reserveSeatNoBinary(String seatNumber) {
+        // Sorted list!!! -> if needed: Collections.sort(list); <- this one much better than the bubble sort
+        // reversed array: Arrays.sort(Collections.reverseOrder(array, Collections.reverseOrder());
+        // reversed list: Collections.sort(arrayList, Collections.reverseOrder());
         int low = 0;
         int high = seats.size() - 1;
 
