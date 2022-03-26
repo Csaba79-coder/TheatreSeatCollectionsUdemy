@@ -1,5 +1,7 @@
 package model;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.*;
 
 public class Theatre {
@@ -14,6 +16,19 @@ public class Theatre {
     //private Collection<Seat> seats = new LinkedHashSet<>(); // <- returns in order this time!
     // private Collection<Seat> seats = new TreeSet<>(); // <- gives error: ClassCastException
     private List<Seat> seats = new ArrayList<>();
+
+    public static final Comparator<Seat> PRICE_ORDER = new Comparator<Seat>() {
+        @Override
+        public int compare(Seat seat1, Seat seat2) {
+            if (seat1.getPrice() < seat2.getPrice()) {
+                return -1;
+            } else if (seat1.getPrice() > seat2.getPrice()) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    };
 
     public Theatre(String THEATRE_NAME, int numRows, int seatsPerRow) {
         this.THEATRE_NAME = THEATRE_NAME;
@@ -110,6 +125,8 @@ public class Theatre {
         private final String SEAT_NUMBER;
         private boolean reserved = false;
         private double price;
+        private static final DecimalFormat PRICE_OF_SEAT = new DecimalFormat("0.00");
+
 
         public Seat(String SEAT_NUMBER, double price) {
             this.SEAT_NUMBER = SEAT_NUMBER;
@@ -143,7 +160,7 @@ public class Theatre {
 
         public static void printList(List<Seat> seats) {
             for (Theatre.Seat seat : seats) {
-                System.out.print(" " + seat.getSEAT_NUMBER() + " prices " + seat.getPrice());
+                System.out.print(" " + seat.getSEAT_NUMBER() + " prices $" + PRICE_OF_SEAT.format(seat.getPrice()));
             }
             System.out.println();
             System.out.println("===============================================================");

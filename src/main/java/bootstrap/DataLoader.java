@@ -127,5 +127,19 @@ public class DataLoader {
         List<Theatre.Seat> reversedSeats = new ArrayList<>(theatre.getSeats());
         Collections.reverse(reversedSeats);
         Theatre.Seat.printList(reversedSeats);
+
+        Printer.printSeparator();
+
+        List<Theatre.Seat> priceSeatsList = new ArrayList<>();
+        priceSeatsList.add(theatre.new Seat("B00", 13.00));
+        priceSeatsList.add(theatre.new Seat("A00", 13.00));
+        Collections.sort(priceSeatsList, Theatre.PRICE_ORDER);
+        Theatre.Seat.printList(priceSeatsList);
+
+        List<Theatre.Seat> anotherFullPriceList = new ArrayList<>(theatre.getSeats());
+        anotherFullPriceList.add(theatre.new Seat("B00", 13.00));
+        anotherFullPriceList.add(theatre.new Seat("A00", 13.00));
+        Collections.sort(priceSeatsList, Theatre.PRICE_ORDER);
+        Theatre.Seat.printList(anotherFullPriceList);
     }
 }
