@@ -4,9 +4,7 @@ import model.Theatre;
 import util.Printer;
 import util.Sort;
 
-import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,6 +13,7 @@ public class DataLoader {
     Theatre theatre = new Theatre("Olympian", 8, 12);
 
     public void load() {
+        /*
         // theatre.getSeats();
 
         if (theatre.reserveSeat("H11")) {
@@ -98,5 +97,31 @@ public class DataLoader {
         Collections.swap(seatCopy, 1, 2);
         System.out.println("Print swapped elements (index: 1 /element=2/ & index: 2 /element=3/)  seatCopy");
         Printer.printList(seatCopy);
+        */
+
+        /*
+        // this one gives an error!
+        List<Theatre.Seat> newList = new ArrayList<>(theatre.seats.size());
+        Collections.copy(newList, theatre.seats);
+        */
+
+        // refactor in Theatre class the arraylist from public to private! and change back Seat class to private (innerclass!)
+
+        Theatre theatre = new Theatre("Olympian", 8, 12);
+
+        String seat = "D12";
+        if (theatre.reserveSeat(seat)) {
+            System.out.println("Please pay for " + seat);
+        } else {
+            System.out.println("Seat already reserved!");
+        }
+
+        String seatWrong = "B13";
+
+        if (theatre.reserveSeat(seatWrong)) {
+            System.out.println("Please pay for " + seatWrong);
+        } else {
+            System.out.println("Seat already reserved!");
+        }
     }
 }

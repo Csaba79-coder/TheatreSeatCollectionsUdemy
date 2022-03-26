@@ -13,7 +13,7 @@ public class Theatre {
     // private Collection<Seat> seats = new HashSet<>(); // <- using different order in case of set! BUT works!
     //private Collection<Seat> seats = new LinkedHashSet<>(); // <- returns in order this time!
     // private Collection<Seat> seats = new TreeSet<>(); // <- gives error: ClassCastException
-    public List<Seat> seats = new ArrayList<>();
+    private List<Seat> seats = new ArrayList<>();
 
     public Theatre(String THEATRE_NAME, int numRows, int seatsPerRow) {
         this.THEATRE_NAME = THEATRE_NAME;
@@ -23,14 +23,20 @@ public class Theatre {
 
                 lastRow; row++) {
             for (int seatNum = 1; seatNum <= seatsPerRow; seatNum++) {
-                Seat seat = new Seat(row + String.format("%02d", seatNum));
+                double price = 12.00;
+                if (row < 'D' &&seatNum >= 4 && seatNum <= 9) {
+                    price = 14.00;
+                } else if (row > 'F' || seatNum < 4 || seatNum > 9); {
+                    price = 7.00;
+                }
+                Seat seat = new Seat(row + String.format("%02d", seatNum), price);
                 seats.add(seat);
             }
         }
     }
 
     public boolean reserveSeat(String seatNumber) {
-        Seat requestedSeat = new Seat(seatNumber);
+        Seat requestedSeat = new Seat(seatNumber, 0);
         int foundSeat = Collections.binarySearch(seats, requestedSeat, null);
 
         if (foundSeat >= 0) {
@@ -82,10 +88,14 @@ public class Theatre {
 
 
     // for testing
-    public void getSeats() {
+    /*public void getSeats() {
         for (Seat seat : seats) {
             System.out.println(seat.getSEAT_NUMBER());
         }
+    }*/
+
+    public Collection<Seat> getSeats() {
+        return seats;
     }
 
     public String getTHEATRE_NAME() {
@@ -99,9 +109,11 @@ public class Theatre {
     public class Seat implements Comparable<Seat> {
         private final String SEAT_NUMBER;
         private boolean reserved = false;
+        private double price;
 
-        public Seat(String SEAT_NUMBER) {
+        public Seat(String SEAT_NUMBER, double price) {
             this.SEAT_NUMBER = SEAT_NUMBER;
+            this.price = price;
         }
 
         public boolean reserve() {
@@ -129,6 +141,14 @@ public class Theatre {
             return this.SEAT_NUMBER.compareTo(seat.getSEAT_NUMBER());
         }
 
+        public static void printList(List<Seat> seats) {
+            for (Theatre.Seat seat : seats) {
+                System.out.print(" " + seat.getSEAT_NUMBER() + " prices " + seat.getPrice());
+            }
+            System.out.println();
+            System.out.println("===============================================================");
+        }
+
         public String getSEAT_NUMBER() {
             return SEAT_NUMBER;
         }
@@ -139,6 +159,14 @@ public class Theatre {
 
         public void setReserved(boolean reserved) {
             this.reserved = reserved;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public void setPrice(double price) {
+            this.price = price;
         }
     }
 }
