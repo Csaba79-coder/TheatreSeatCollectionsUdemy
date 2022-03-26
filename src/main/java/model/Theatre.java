@@ -13,7 +13,7 @@ public class Theatre {
     // private Collection<Seat> seats = new HashSet<>(); // <- using different order in case of set! BUT works!
     //private Collection<Seat> seats = new LinkedHashSet<>(); // <- returns in order this time!
     // private Collection<Seat> seats = new TreeSet<>(); // <- gives error: ClassCastException
-    private List<Seat> seats = new ArrayList<>();
+    public List<Seat> seats = new ArrayList<>();
 
     public Theatre(String THEATRE_NAME, int numRows, int seatsPerRow) {
         this.THEATRE_NAME = THEATRE_NAME;
@@ -96,7 +96,7 @@ public class Theatre {
         this.seats = seats;
     }
 
-    private class Seat implements Comparable<Seat> {
+    public class Seat implements Comparable<Seat> {
         private final String SEAT_NUMBER;
         private boolean reserved = false;
 
