@@ -45,6 +45,23 @@ public class MapProgram {
         }
 
         System.out.println(languages.get("Python"));
+
+        // languages.remove("Lisp"); // the whole key-entry will be removed, also the values that contained by the key!
+
+        if (languages.remove("BASIC", "Beginners Code")) {
+            System.out.println("BASIC removed!");
+        } else {
+            System.out.println("BASIC is not removed! Key/value pair not found!");
+        }
+
+        System.out.println(languages.replace("Lips", "a functional programming language with imperative features"));
+        System.out.println(languages.replace("Scala", "this will not be added!"));
+
+        /*if (languages.replace("Lips", "Therein lies madness", "new value for Lips key entry!")) {
+            System.out.println("Lips replaced");
+            } else {
+            System.out.println("Lips was not replaced");
+        }*/
     }
 
     private void loopThroughTheKeys(Map<String, String> map) {
